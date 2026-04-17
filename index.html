@@ -128,6 +128,25 @@ nav a:hover{color:var(--gold-light);}
 .p-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;border-radius:2px;}
 .p-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .p-icon{font-size:1.5rem;opacity:0.25;}
+
+/* SINGLE PHOTO */
+.photo-hero {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,0.2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.1);
+  aspect-ratio: 3/4;
+  max-height: 80vh;
+}
+.photo-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
 .p-txt{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.35);}
 
 /* STORY */
@@ -342,12 +361,8 @@ footer p+p{margin-top:8px;}
       <p class="sec-label">Our Gallery</p>
       <h2 class="sec-title">Quachell <em>&</em> Stephan</h2>
       <div class="sec-rule"><span class="r"></span><span>🌹</span><span class="r flip"></span></div>
-      <div class="photos-grid">
-        <div class="p-slot wide" id="ps0" style="aspect-ratio:3/2;"><img id="pi0" src="1S5A4884-134.jpg" alt="Quachell and Stephan" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
-        <div class="p-slot" id="ps1" style="aspect-ratio:3/4;"><img id="pi1" src="1S5A4379-84.jpg" alt="Quachell and Stephan" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
-        <div class="p-slot" id="ps2" style="aspect-ratio:3/4;border-radius:2px;overflow:hidden;"><img src="1S5A4692-119.jpg" alt="Quachell and Stephan" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div class="p-slot" id="ps3" style="grid-column:1/-1;aspect-ratio:3/2;border-radius:2px;overflow:hidden;"><img src="1S5A4448-94.jpg" alt="Quachell and Stephan" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div class="p-slot" id="ps4"><img id="pi4" src="" alt=""><div class="p-icon">📷</div><div class="p-txt">Add a photo</div><input type="file" accept="image/*" onchange="loadImg(this,4)"></div>
+      <div class="photo-hero">
+        <img src="1S5A4379-84.jpg" alt="Quachell and Stephan" />
       </div>
     </div>
     <div class="rose-divider"></div>
@@ -424,16 +439,6 @@ footer p+p{margin-top:8px;}
               <option value="4">4</option>
             </select>
           </div>
-        </div>
-        <div class="f-field">
-          <label>Meal Preference</label>
-          <select name="meal" id="mel">
-            <option value="">Select…</option>
-            <option>Herb Roasted Chicken</option>
-            <option>Pan-Seared Filet Mignon</option>
-            <option>Roasted Vegetable Wellington</option>
-            <option>Lemon Butter Salmon</option>
-          </select>
         </div>
         <div class="f-field">
           <label>Dietary Needs · Message for the Couple</label>
@@ -513,7 +518,6 @@ async function doRSVP() {
   const email  = document.getElementById('eM').value.trim();
   const attend = document.getElementById('att').value;
   const guests = document.getElementById('gst').value;
-  const meal   = document.getElementById('mel').value;
   const notes  = document.getElementById('nt').value.trim();
   const errEl  = document.getElementById('formErr');
 
@@ -537,7 +541,7 @@ async function doRSVP() {
         email:      email,
         attending:  attend,
         guests:     guests,
-        meal:       notes:      notes
+        notes: notes
       })
     });
 
